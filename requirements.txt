@@ -1,5 +1,5 @@
 discord.py-self==2.1.0
-aiofiles>=23.2.1
+aiofiles>=24.1.0
 colorama>=0.4.6
 flask
 aiohttp==3.8.4
