@@ -1,0 +1,33 @@
+{
+  "threats": {
+    "description": "Explicit threats of violence or intent to harm",
+    "patterns": [
+      "\\bkill\\b",
+      "\\b(i will )?(kill|murder|destroy)\\b",
+      "\\bi am going to (kill|hurt)\\b",
+      "\\bdetonate\\b",
+      "\\bbomb\\b"
+    ]
+  },
+  "harassment": {
+    "description": "Targeted insults and harassment",
+    "patterns": [
+      "\\bidiot\\b",
+      "\\b(you are a )?dumb(ass|asshole)?\\b",
+      "\\bstupid\\b",
+      "\\bshut up\\b",
+      "\\bkill yourself\\b"
+    ]
+  },
+  "sexual_minors": {
+    "description": "Sexual content involving minors (high severity)",
+    "patterns": [
+      "minor",
+      "underage",
+      "13 year",
+      "14 year",
+      "young girl",
+      "young boy"
+    ]
+  }
+}
