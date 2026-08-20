@@ -1,16 +1,10 @@
-"""Discord moderation scanner bot (bot account) - regex-only detection
+"""NoEvidence Discord moderation scanner bot (bot account for now) - regex-only detection
 
 Requires:
 - discord.py v2
 - python-dotenv (optional)
 
-Usage:
-- Set DISCORD_BOT_TOKEN env var or create a .env file with DISCORD_BOT_TOKEN=...
-- Ensure "Message Content Intent" is enabled for the bot in the Developer Portal
-- Invite the bot to servers with: View Channels, Read Message History, Send Messages
-  (Manage Messages is required if you want the bot to delete other users' messages)
-
-Commands (prefix: !):
+Commands (prefix: $):
 - !scan <target_user_id> : Scans all guilds the bot is in for messages by the given user ID that match rules
 - !confirm_delete DELETE ALL : After a scan, deletes matching messages where the bot has permission
 - !export_scan : Sends a JSON file of last scan results to the invoker via DM
@@ -35,7 +29,7 @@ import discord
 from discord.ext import commands
 
 # --- Configuration ---
-BOT_PREFIX = "!"
+BOT_PREFIX = "$"
 intents = discord.Intents.default()
 intents.guilds = True
 intents.messages = True
