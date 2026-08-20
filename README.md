@@ -1,4 +1,4 @@
-# Discord Moderation Scanner Bot (regex-only)
+# No evidence Discord Moderation Scanner Bot (regex-only)
 
 This repository branch contains a Discord bot implementation that scans for messages authored by a target user across guilds the bot is in and detects potential violations using configurable regex rules. This version intentionally does not integrate any external moderation API.
 
@@ -23,12 +23,12 @@ Install & run
 pip install -r requirements.txt
 python bot/main.py
 
-Files added in this branch
+Files in this branch
 - bot/main.py : main bot implementation
 - detection_rules.json : regex detection rules that the bot loads at runtime
 - requirements.txt : Python dependencies
 
 Notes & safety
-- This bot is built for a bot account only (not a self-bot) and follows Discord permissions: it will only read or delete messages where it has permission.
+- This bot is built for a bot account only (soon to be for self-bot) and follows Discord permissions: it will only read or delete messages where it has permission.
 - Scanning full server histories can take substantial time and is subject to rate limits. Use SCAN_LIMIT_PER_CHANNEL to limit scope during testing.
 - The regex rules in detection_rules.json are a starting point — tune them for your needs.
