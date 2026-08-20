@@ -1,150 +1,97 @@
 {
   "threats": {
-    "description": "Direct threats or explicit intent to harm another person (including obfuscated spellings).",
+    "description": "Direct, explicit threats of violence or admissions of intent to commit violence (high-confidence patterns).",
     "severity": "high",
     "patterns": [
-      "(?i)\\b(i(?:'ll| will| am\\s*going\\s*to| gonna|maim|plan\\s*to)\\b[\s\S]{0,120}?\\b(?:kill|murder|shoot|stab|beat|destroy|hurt)\\b)",
-      "(?i)\\b(k(?:\\W|_)*i(?:\\W|_)*l(?:\\W|_)*l|murder|shoot|stab|beat|burn)\\b",
-      "(?i)(detonate|bomb|explode|blow\\s+up|make\\s+a\\s+bomb)"
+      "(?i)\\b(i(?:'ll| will| am\\s*going\\s*to|gonna)\\s+(?:kill|murder|shoot|stab|beat|destroy)\\b)",
+      "(?i)\\b(?:k(?:\\W|_)*i(?:\\W|_)*l(?:\\W|_)*l)\\b",
+      "(?i)\\b(detona(te|ting)|bomb|explode|blow\\s+up|make\\s+a\\s+bomb)\\b"
     ],
     "sample_triggers": [
       "I will kill you",
       "gonna blow up the place",
       "detonate the bomb"
     ],
-    "recommended_action": "Review immediately; high priority. Consider deletion and escalation to moderators."  
-  },
-
-  "harassment": {
-    "description": "Insults, targeted harassment, encouraging self-harm, and short-form harassment phrases.",
-    "severity": "high",
-    "patterns": [
-      "(?i)\\b(kill\\s+yourself|kill\\s+urself|kys)\\b",
-      "(?i)\\b(you\\s+are\\s+an?\\s+(idiot|dumbass|moron|loser|scumbag|trash))\\b",
-      "(?i)\\b(shut\\s+up|stfu|sit\\s+down\\s+and\\s+shut\\s+up)\\b",
-      "(?i)\\b(worthless|pathetic|piece\\s+of\\s+shit)\\b"
-    ],
-    "sample_triggers": [
-      "kys",
-      "You're a dumbass"
-    ],
-    "recommended_action": "High priority: review for moderation action."
-  },
-
-  "hate_speech": {
-    "description": "Hateful language or slurs targeting protected characteristics. (Contains offensive terms for detection.)",
-    "severity": "high",
-    "patterns": [
-      "(?i)\\b(nigg(?:a|er)?|faggot|retard(?:ed)?|chink|kike|spic|wetback|slur)\\b",
-      "(?i)\\b(((racial|religious|disability)\\s+slur)|(go\\s+back\\s+to\\s+your\\s+country))\\b"
-    ],
-    "sample_triggers": [
-      "racial slur used in a sentence",
-      "go back to your country"
-    ],
-    "recommended_action": "High priority: likely grounds for removal and escalation." 
+    "recommended_action": "High priority review; likely grounds for enforcement." 
   },
 
   "sexual_minors": {
-    "description": "Sexual or explicit content that references minors or underage persons. Patterns aim to detect age mentions in sexual contexts.",
+    "description": "Explicit sexual content that references minors or underage persons (high-confidence).",
     "severity": "high",
     "patterns": [
-      "(?si)(?:\\b(13|14|15|16|17)\\b[^\\n]{0,80}?(?:\\b(sex|nude|porn|bare|xxx|fuck|rape|oral|underage|young)\\b))",
+      "(?si)(?:\\b(13|14|15|16|17)\\b[\s\S]{0,100}?\\b(?:sex|nude|porn|xxx|fuck|rape|oral)\\b)",
       "(?i)\\b(underage|minors?|young\\s+(?:girl|boy|teen))\\b",
-      "(?i)\\b(\\d{1,2}\\s*(?:yo|yr|years?\\s*old))\\b"
+      "(?i)\\b(13|14|15|16|17)\\s*(?:year|yr|yo|years?)\\b"
     ],
     "sample_triggers": [
       "13 year old nude pictures",
       "underage teen porn"
     ],
-    "recommended_action": "Immediate review; severe policy violation. Escalate to server admins and follow platform policy." 
-  },
-
-  "self_harm": {
-    "description": "Expressions of intent to self-harm or suicidal ideation. Useful for flagging messages that may need sensitive intervention.",
-    "severity": "high",
-    "patterns": [
-      "(?i)\\b(i\\s*(?:want|want\\s+to|wanna|will|am\\s*going\\s*to|plan\\s*to)\\s*(?:kill\\s+myself|end\\s+my\\s+life|die|off\\s+myself))\\b",
-      "(?i)\\b(suicid(?:e|al)|im\\s+going\\s+to\\s+kill\\s+myself)\\b"
-    ],
-    "sample_triggers": [
-      "I want to kill myself",
-      "I'm going to end it"
-    ],
-    "recommended_action": "Sensitive: consider non-punitive support steps. Notify moderators or trusted contacts if policy allows." 
+    "recommended_action": "Immediate review and escalation; severe policy violation." 
   },
 
   "doxxing": {
-    "description": "Patterns commonly associated with sharing private/personal data (phone numbers, IPs, emails, street addresses).",
+    "description": "Sharing of private/personal data (email, phone, IP, street address). These patterns are high-confidence indicators of doxxing when seen in context.",
     "severity": "high",
     "patterns": [
-      "(?i)\\b(?:address\\s+is|lives\\s+at|my\\s+address|located\\s+at)\\b",
+      "(?i)\\b[\\w.+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}\\b",
       "\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b",
-      "(?i)\\b[\w.+-]+@[\w.-]+\\.[a-zA-Z]{2,6}\\b",
       "(?i)\\b\\+?\\d{1,3}[ -\\.]?\\(?\\d{2,4}\\)?[ -\\.]?\\d{2,4}[ -\\.]?\\d{2,4}\\b",
-      "(?i)\\b(ssn|social\\s+security\\s+number)\\b"
+      "(?i)\\b(address\\s+is|lives\\s+at|located\\s+at|my\\s+address|home\\s+address)\\b"
     ],
     "sample_triggers": [
       "john.doe@example.com",
       "+1 (555) 123-4567",
-      "123.45.67.89"
+      "123.45.67.89",
+      "Her address is 123 Main St"
     ],
-    "recommended_action": "High priority: immediate removal and escalation due to privacy risk." 
+    "recommended_action": "Immediate removal and escalation; privacy breach risk." 
   },
 
   "illegal_activity": {
-    "description": "Explicit instructions or facilitation of illegal activity (weapons, drugs, explosives, fraud).",
+    "description": "Explicit instructions or facilitation of violent or other illegal activities (weapons, explosives, drug production/purchase).",
     "severity": "high",
     "patterns": [
-      "(?i)\\bhow\\s+to\\s+(?:make|build|manufacture|craft)\\b",
+      "(?i)\\bhow\\s+to\\s+(?:make|build|manufacture|assemble)\\b",
       "(?i)\\b(make|build|detonate)\\s+(?:a\\s+bomb|explosive)\\b",
       "(?i)\\b(where\\s+to\\s+buy\\s+(?:drugs|fentanyl|guns)|sell\\s+drugs|get\\s+steroids)\\b",
-      "(?i)\\b(carding|cc\\s+dump|fraud|phishing)\\b"
+      "(?i)\\b(carding|cc\\s+dump|buy\\s+ssn|fraud|phishing)\\b"
     ],
     "sample_triggers": [
       "how to make a bomb",
-      "where to buy fentanyl"
+      "where to buy fentanyl",
+      "cc dump for sale"
     ],
-    "recommended_action": "Immediate review and removal; severe violation." 
+    "recommended_action": "Immediate review; severe enforcement likely." 
   },
 
-  "sexual_explicit": {
-    "description": "Explicit sexual content not involving minors.",
-    "severity": "medium",
+  "hate_speech_violent": {
+    "description": "Hateful content that includes calls for violence or mass harm against a group (high-confidence).",
+    "severity": "high",
     "patterns": [
-      "(?i)\\b(porn|nudes|naked|sex|fuck|cum|orgasm|blowjob|anal)\\b",
-      "(?i)\\b(send\\s+nudes|send\\s+pics|nsfw)\\b"
+      "(?i)\\bkill\\s+all\\s+\\w+\\b",
+      "(?i)\\b(\\w+\\s+should\\s+be\\s+killed|burn\\s+them)\\b"
     ],
     "sample_triggers": [
-      "send nudes",
-      "watching porn"
+      "kill all [group]",
+      "they should be killed"
     ],
-    "recommended_action": "Medium priority: may be removed depending on server rules." 
+    "recommended_action": "High priority; likely suspension-worthy." 
   },
 
-  "spam_phishing": {
-    "description": "Spammy or phishing messages: suspicious shortened links, giveaway scams, and common spam phrases.",
-    "severity": "low",
+  "phishing_scam": {
+    "description": "High-confidence phishing/scam indicators (fake Nitro/Discord gift pages, shorteners with typical scam language).",
+    "severity": "high",
     "patterns": [
-      "(?i)\\bfree\\s+(money|giftcard|robux|nitro|wallet)\\b",
-      "(?i)\\b(click\\s+here|claim\\s+your|don\\'t\\s+miss\\s+out)\\b",
-      "https?://[\\w\\-\\./?=&%~#]+",
-      "(?i)\\b(bit\\.?ly|tinyurl\\.|goo\\.?gl|discord\\.?gift|discordgift)\\b"
+      "(?i)\\b(discord(?:gift|giftcard)|discord-claim|discordgift)\\b",
+      "(?i)\\bfree\\s+(?:nitro|giftcard|money|robux)\\b",
+      "(?i)\\b(click\\s+here|claim\\s+your)\\b.*https?://",
+      "https?://(?:bit\\.?ly|tinyurl\\.|goo\\.?gl|t\.co|ow\.ly)/"
     ],
     "sample_triggers": [
-      "Free nitro! click here: bit.ly/xyz",
-      "Claim your free giftcard"
+      "Free nitro! go to discord.gift/xyz",
+      "Claim your free giftcard here: bit.ly/abc"
     ],
-    "recommended_action": "Low-medium: often spam; remove or quarantine." 
-  },
-
-  "whitelist": {
-    "description": "Optional phrases or contexts that commonly cause false positives. These are not applied automatically by the scanner but are provided to help tune rules.",
-    "patterns": [
-      "(?i)\\bminor\\s+issue\\b",
-      "(?i)\\bminor\\s+bug\\b",
-      "(?i)\\bnot\\s+violent\\b"
-    ],
-    "notes": "Consider using these phrases to suppress matches that are known false positives when implementing a refinement step."
+    "recommended_action": "Remove and escalate; phishing/scams may lead to account action." 
   }
 }
