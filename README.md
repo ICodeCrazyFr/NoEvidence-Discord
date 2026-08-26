@@ -11,7 +11,7 @@ Setup
    - (Optional) Manage Messages — required if you want the bot to delete other users' messages
 3. Add the bot token to the environment where you run the bot. You can create a .env file with:
 
-   DISCORD_BOT_TOKEN=your_bot_token_here
+   TOKEN=your_bot_token_here
 
 4. (Optional) Configure limits via environment variables:
    - SCAN_LIMIT_PER_CHANNEL: integer to limit how many messages per channel to scan (default: full history)
@@ -21,14 +21,14 @@ Setup
 Install & run
 
 pip install -r requirements.txt
-python bot/main.py
+python main.py
 
 Files in this branch
-- bot/main.py : main bot implementation
+- main.py : main bot implementation
 - detection_rules.json : regex detection rules that the bot loads at runtime
 - requirements.txt : Python dependencies
 
 Notes & safety
-- This bot is built for a bot account only (soon to be for self-bot) and follows Discord permissions: it will only read or delete messages where it has permission.
+- This bot is built for a bot account only (soon to be self-bot) and follows Discord permissions: it will only read or delete messages where it has permission.
 - Scanning full server histories can take substantial time and is subject to rate limits. Use SCAN_LIMIT_PER_CHANNEL to limit scope during testing.
 - The regex rules in detection_rules.json are a starting point — tune them for your needs.
