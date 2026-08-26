@@ -21,10 +21,10 @@ Setup
 Install & run
 
 pip install -r requirements.txt
-python main.py
+python bot/main.py
 
 Files in this branch
-- main.py : main bot implementation
+- bot/main.py : main bot implementation
 - detection_rules.json : regex detection rules that the bot loads at runtime
 - requirements.txt : Python dependencies
 
